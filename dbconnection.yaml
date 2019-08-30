@@ -1,0 +1,12 @@
+---
+  - hosts: web
+    sudo: yes
+    tasks:
+    - name: copy the db config files to web instances
+      copy:
+       src: /root/tcl-project/wp-config.php
+       dest: /var/www/html
+    - name: refresh apache service
+      service:
+       name: httpd
+       state: restarted
